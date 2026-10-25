@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waseem Abbas — Software Engineer & AI/ML Developer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        },
+                        darkbase: '#0b0f19',
+                        carddark: '#111827',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-panel {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #374151; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-[#0b0f19] dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 glass-panel">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+                    WA
+                </div>
+                <div>
+                    <span class="font-bold text-base tracking-tight block">Waseem Abbas</span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400 block -mt-1">Software & AI Engineer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Projects</a>
+                <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">About & Skills</a>
+                <a href="#experience" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Experience</a>
+                <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all shadow-sm">
+                    <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" aria-label="Toggle menu" class="md:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    <i class="fa-solid fa-bars text-sm"></i>
+                </button>
+                <!-- Resume Download Quick CTA -->
+                <a href="#contact" onclick="triggerResumeDownload(event)" class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-md shadow-indigo-600/20 transition-all">
+                    <i class="fa-solid fa-file-arrow-down mr-2"></i> Resume
+                </a>
+            </div>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 border-t border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md">
+            <div class="flex flex-col space-y-3 pt-2">
+                <a href="#projects" class="mobile-nav-link text-slate-700 dark:text-slate-200 font-medium py-1.5">Projects</a>
+                <a href="#about" class="mobile-nav-link text-slate-700 dark:text-slate-200 font-medium py-1.5">About & Skills</a>
+                <a href="#experience" class="mobile-nav-link text-slate-700 dark:text-slate-200 font-medium py-1.5">Experience</a>
+                <a href="#contact" class="mobile-nav-link text-slate-700 dark:text-slate-200 font-medium py-1.5">Contact</a>
+                <button onclick="triggerResumeDownload(event)" class="w-full mt-2 inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-md">
+                    <i class="fa-solid fa-file-arrow-down mr-2"></i> Download Resume
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow">
+
+        <!-- 1. HERO SECTION -->
+        <section class="relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <!-- Background glow effects -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-600/15 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute top-1/3 right-10 w-72 h-72 bg-violet-500/10 dark:bg-violet-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-8 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/80 dark:border-indigo-800/80 text-indigo-700 dark:text-indigo-300 text-xs font-semibold mb-6 shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Available for Full-Time Roles & High-Impact Projects</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1] mb-6">
+                        Hi, I'm <span class="bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-500 bg-clip-text text-transparent">Waseem Abbas</span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl font-medium text-slate-700 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                        Software Engineer & AI/ML Developer. Building scalable software architectures, intelligent machine learning models, and secure web applications.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#projects" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-600/25 transition-all transform hover:-translate-y-0.5">
+                            <span>View Featured Work</span>
+                            <i class="fa-solid fa-arrow-down ml-2 text-xs"></i>
+                        </a>
+                        <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 shadow-sm transition-all">
+                            <span>Get in Touch</span>
+                            <i class="fa-solid fa-paper-plane ml-2 text-xs"></i>
+                        </a>
+                    </div>
+
+                    <!-- Quick stats / Highlights -->
+                    <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800/80 grid grid-cols-3 gap-6 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">4+</div>
+                            <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">Core AI/Web Projects</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">99%</div>
+                            <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">Model Accuracy Peak</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Python & JS</div>
+                            <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">Primary Tech Stack</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Profile Bento Card -->
+                <div class="lg:col-span-4">
+                    <div class="relative rounded-3xl p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none overflow-hidden group">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl group-hover:scale-125 transition-transform"></div>
+                        
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-indigo-600/30">
+                                WA
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Waseem Abbas</h3>
+                                <p class="text-xs text-indigo-600 dark:text-indigo-400 font-semibold">GitHub: @waseemabbas530</p>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                            Passionate undergraduate computer science developer bridging the gap between robust software engineering, machine learning pipelines, and cybersecurity fundamentals.
+                        </p>
+
+                        <div class="space-y-3 text-xs font-medium text-slate-700 dark:text-slate-300">
+                            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+                                <span class="flex items-center"><i class="fa-solid fa-graduation-cap text-indigo-500 mr-2.5 w-4"></i> CS Student & Engineer</span>
+                                <span class="text-slate-400">Active</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+                                <span class="flex items-center"><i class="fa-solid fa-code text-indigo-500 mr-2.5 w-4"></i> Python / Flask / Git</span>
+                                <span class="text-slate-400">Expert</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+                                <span class="flex items-center"><i class="fa-solid fa-shield-halved text-indigo-500 mr-2.5 w-4"></i> Web Sec & Kali Linux</span>
+                                <span class="text-slate-400">Advanced</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-xs text-slate-500 dark:text-slate-400">
+                            <a href="https://github.com/waseemabbas530" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center">
+                                <i class="fa-brands fa-github text-base mr-1.5"></i> GitHub Profile
+                            </a>
+                            <a href="#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center">
+                                <i class="fa-solid fa-envelope text-base mr-1.5"></i> Send Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. FEATURED PROJECTS SECTION -->
+        <section id="projects" class="py-20 bg-slate-100/70 dark:bg-[#0e1422] border-y border-slate-200/80 dark:border-slate-800/80 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase tracking-widest mb-3">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <span>Featured Works</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                            Engineered Solutions & Case Studies
+                        </h2>
+                    </div>
+                    <p class="mt-4 md:mt-0 text-slate-600 dark:text-slate-400 max-w-md text-sm leading-relaxed">
+                        Explore core production-grade applications highlighting machine learning diagnosis, cryptocurrency portfolio tracking, secure architectures, and automation tools.
+                    </p>
+                </div>
+
+                <!-- Projects Bento Grid (4 works) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <!-- Project 1: Leaf Guard AI -->
+                    <div class="bg-white dark:bg-slate-900 rounded-3xl p-7 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-lg text-xs font-bold bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60">
+                                    AI / Computer Vision
+                                </span>
+                                <span class="text-xs font-medium text-slate-400">Featured Case Study</span>
+                            </div>
+
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                Leaf Guard AI: Crop Health Diagnostic System
+                            </h3>
+
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                                An intelligent deep learning web application that diagnoses crop leaf diseases in real-time using image classification CNN models.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Python</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">TensorFlow/Keras</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Flask API</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Tailwind CSS</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                            <button onclick="openCaseStudy('leafguard')" class="inline-flex items-center text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">
+                                <span>Read Case Study</span>
+                                <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                            <a href="https://github.com/waseemabbas530" target="_blank" rel="noopener" aria-label="GitHub Link" class="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                <i class="fa-brands fa-github text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Cipher Capital -->
+                    <div class="bg-white dark:bg-slate-900 rounded-3xl p-7 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-lg text-xs font-bold bg-violet-50 dark:bg-violet-950/50 text-violet-600 dark:text-violet-400 border border-violet-200/60 dark:border-violet-800/60">
+                                    Fintech / Crypto Analytics
+                                </span>
+                                <span class="text-xs font-medium text-slate-400">Featured Case Study</span>
+                            </div>
+
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                Cipher Capital: Real-Time Crypto Analytics Platform
+                            </h3>
+
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                                High-performance web application providing live cryptocurrency market trends, price volatility charts, and portfolio tracking metrics.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">JavaScript (ES6+)</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">REST APIs</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Chart.js</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Tailwind CSS</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                            <button onclick="openCaseStudy('cipher')" class="inline-flex items-center text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">
+                                <span>Read Case Study</span>
+                                <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                            <a href="https://github.com/waseemabbas530" target="_blank" rel="noopener" aria-label="GitHub Link" class="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                <i class="fa-brands fa-github text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: SecureAuth Portal -->
+                    <div class="bg-white dark:bg-slate-900 rounded-3xl p-7 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-lg text-xs font-bold bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 border border-amber-200/60 dark:border-amber-800/60">
+                                    Cybersecurity / Backend
+                                </span>
+                                <span class="text-xs font-medium text-slate-400">Featured Case Study</span>
+                            </div>
+
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                SecureAuth: Role-Based Authentication & Security Suite
+                            </h3>
+
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                                Hardened backend authentication service implementing token-based sessions, rate limiting, and password hashing defense layers against OWASP threats.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Python</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Flask Security</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">SQLite/SQLAlchemy</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Burp Suite Tested</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                            <button onclick="openCaseStudy('secureauth')" class="inline-flex items-center text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">
+                                <span>Read Case Study</span>
+                                <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                            <a href="https://github.com/waseemabbas530" target="_blank" rel="noopener" aria-label="GitHub Link" class="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                <i class="fa-brands fa-github text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: DevTask Automation Engine -->
+                    <div class="bg-white dark:bg-slate-900 rounded-3xl p-7 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-lg text-xs font-bold bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 border border-blue-200/60 dark:border-blue-800/60">
+                                    Developer Tooling
+                                </span>
+                                <span class="text-xs font-medium text-slate-400">Featured Case Study</span>
+                            </div>
+
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                DevTask: Automated Task & Git Workflow CLI Utility
+                            </h3>
+
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                                A command-line automation tool built in Python to streamline local git branch naming, commit logging, and project scaffolding.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Python CLI</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Git Integration</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">JSON Storage</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Automation</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                            <button onclick="openCaseStudy('devtask')" class="inline-flex items-center text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">
+                                <span>Read Case Study</span>
+                                <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                            <a href="https://github.com/waseemabbas530" target="_blank" rel="noopener" aria-label="GitHub Link" class="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                <i class="fa-brands fa-github text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. ABOUT ME / SKILLS SECTION -->
+        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Left Column: Bio & Philosophy -->
+                <div class="lg:col-span-5">
+                    <div class="inline-flex items-center space-x-2 text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase tracking-widest mb-3">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                        <span>About Me</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">
+                        Crafting clean code & intelligent systems.
+                    </h2>
+                    
+                    <div class="space-y-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                        <p>
+                            Hello! I am <strong class="text-slate-900 dark:text-white">Waseem Abbas</strong>, a dedicated Software Engineer and AI/ML Developer. I specialize in building end-to-end software architectures that combine responsive frontend interfaces with secure, high-throughput backend services and machine learning models.
+                        </p>
+                        <p>
+                            Whether I am fine-tuning convolutional neural networks for image classification or conducting vulnerability assessments using penetration testing frameworks like Kali Linux and Burp Suite, I approach engineering with a focus on rigorous testing, maintainability, and optimal performance.
+                        </p>
+                        <p>
+                            When I'm not coding, you can find me exploring open-source repositories, contributing to tech communities, or experimenting with new algorithms on GitHub (<a href="https://github.com/waseemabbas530" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 font-semibold underline">@waseemabbas530</a>).
+                        </p>
+                    </div>
+
+                    <div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 gap-4">
+                        <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="text-indigo-600 dark:text-indigo-400 text-lg mb-1"><i class="fa-solid fa-code-commit"></i></div>
+                            <div class="font-bold text-slate-900 dark:text-white text-base">Clean Architecture</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Modular, scalable patterns</div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="text-indigo-600 dark:text-indigo-400 text-lg mb-1"><i class="fa-solid fa-brain"></i></div>
+                            <div class="font-bold text-slate-900 dark:text-white text-base">Applied AI & ML</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Real-world prediction models</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Skills Matrix & Core Stack -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center">
+                            <i class="fa-solid fa-toolbox text-indigo-600 dark:text-indigo-400 mr-3"></i> Core Technical Stack & Skills
+                        </h3>
+
+                        <!-- Skill Categories -->
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Programming Languages & Frameworks</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900">Python</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900">JavaScript (ES6+)</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900">Flask / REST APIs</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900">HTML5 / CSS3 / Tailwind</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Machine Learning & Data Science</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900">Machine Learning</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900">TensorFlow / Keras</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900">Data Preprocessing</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900">Model Evaluation</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Developer Tools & Cybersecurity</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-violet-50 dark:bg-violet-950/60 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-900">Git & GitHub</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-violet-50 dark:bg-violet-950/60 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-900">VS Code</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-violet-50 dark:bg-violet-950/60 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-900">Kali Linux</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-violet-50 dark:bg-violet-950/60 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-900">Burp Suite</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-violet-50 dark:bg-violet-950/60 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-900">Web Security Fundamentals</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Soft Skills & Methodologies</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Problem Solving</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">STAR Methodology</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Technical Documentation</span>
+                                    <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Cross-functional Collaboration</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. WORK EXPERIENCE TIMELINE SECTION -->
+        <section id="experience" class="py-20 bg-slate-100/70 dark:bg-[#0e1422] border-t border-slate-200/80 dark:border-slate-800/80 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center space-x-2 text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase tracking-widest mb-3">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span>Career Timeline</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                        Experience & Milestones
+                    </h2>
+                    <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm max-w-lg mx-auto">
+                        A chronological overview of my professional growth, technical projects, and academic software engineering milestones.
+                    </p>
+                </div>
+
+                <!-- Timeline Feed -->
+                <div class="relative border-l-2 border-indigo-500/30 dark:border-indigo-500/20 ml-4 sm:ml-8 space-y-12">
+
+                    <!-- Timeline Item 1 -->
+                    <div class="relative pl-8 sm:pl-10 group">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-600 ring-4 ring-indigo-100 dark:ring-indigo-950 transition-transform group-hover:scale-125"></div>
+                        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Software Engineer & AI Developer</h3>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 w-fit mt-1 sm:mt-0">2024 — Present</span>
+                            </div>
+                            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-4">Independent Projects & Open Source (@waseemabbas530)</div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Architecting end-to-end intelligent applications including Leaf Guard AI and Cipher Capital. Focusing on modular Python backends, machine learning integrations, and responsive frontend experiences with Tailwind CSS.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-0.5 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Python</span>
+                                <span class="px-2 py-0.5 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">TensorFlow</span>
+                                <span class="px-2 py-0.5 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Flask</span>
+                                <span class="px-2 py-0.5 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Git</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="relative pl-8 sm:pl-10 group">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-600 ring-4 ring-indigo-100 dark:ring-indigo-950 transition-transform group-hover:scale-125"></div>
+                        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Cybersecurity & Web Security Trainee</h3>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-violet-50 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400 w-fit mt-1 sm:mt-0">2023 — 2024</span>
+                            </div>
+                            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-4">Hands-on Security Labs & Auditing</div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Conducted vulnerability analyses on web applications using Kali Linux and Burp Suite. Designed hardened backend authentication flows resistant to common OWASP Top 10 exploits.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-0.5 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Kali Linux</span>
+                                <span class="px-2 py-0.5 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Burp Suite</span>
+                                <span class="px-2 py-0.5 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">SecureAuth</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="relative pl-8 sm:pl-10 group">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-600 ring-4 ring-indigo-100 dark:ring-indigo-950 transition-transform group-hover:scale-125"></div>
+                        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Computer Science Student & Developer</h3>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 w-fit mt-1 sm:mt-0">2022 — Present</span>
+                            </div>
+                            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-4">Academic & Practical Foundations</div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Mastering data structures, algorithms, object-oriented programming, and software engineering principles while building real-world practical tools in Python and JavaScript.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-0.5 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Data Structures</span>
+                                <span class="px-2 py-0.5 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Algorithms</span>
+                                <span class="px-2 py-0.5 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Problem Solving</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CONTACT PAGE / FOOTER SECTION -->
+        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Left Column: Contact info & Copy Email -->
+                <div class="lg:col-span-5 flex flex-col justify-between">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase tracking-widest mb-3">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Get in Touch</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+                            Let's build something exceptional together.
+                        </h2>
+                        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
+                            I am currently open to full-time software engineering roles, machine learning projects, and exciting collaborations. Reach out via the form or copy my direct email.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Copy Email Button Box -->
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                            <div class="flex items-center space-x-3 overflow-hidden">
+                                <div class="w-10 h-10 rounded-xl bg-indigo-600/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-envelope text-base"></i>
+                                </div>
+                                <div class="truncate">
+                                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Direct Email</div>
+                                    <div id="email-text" class="text-sm font-bold text-slate-900 dark:text-white truncate">waseemabbas530@gmail.com</div>
+                                </div>
+                            </div>
+                            <button onclick="copyEmailToClipboard()" class="ml-3 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-sm transition-all shrink-0">
+                                <i class="fa-solid fa-copy mr-1.5"></i> Copy
+                            </button>
+                        </div>
+
+                        <!-- Social Links Row -->
+                        <div class="flex items-center space-x-3 pt-2">
+                            <a href="https://github.com/waseemabbas530" target="_blank" rel="noopener" aria-label="GitHub" class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all">
+                                <i class="fa-brands fa-github text-lg"></i>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all">
+                                <i class="fa-brands fa-linkedin-in text-lg"></i>
+                            </a>
+                            <a href="mailto:waseemabbas530@gmail.com" aria-label="Email" class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Contact Form -->
+                <div class="lg:col-span-7">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="name" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Your Name</label>
+                                <input type="text" id="name" required placeholder="Hiring Manager / Recruiter" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm transition-all">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Your Email</label>
+                                <input type="email" id="email" required placeholder="name@company.com" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm transition-all">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Message</label>
+                            <textarea id="message" rows="4" required placeholder="Discuss a project, role, or collaboration..." class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm transition-all resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/25 transition-all flex items-center justify-center space-x-2">
+                            <span>Send Message</span>
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+
+                        <div id="form-success-msg" class="hidden p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-medium text-center">
+                            <i class="fa-solid fa-circle-check mr-1.5"></i> Thank you! Your message has been sent successfully. I will get back to you shortly.
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-8 px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 dark:text-slate-400">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>© 2026 Waseem Abbas. Built with modern web standards.</div>
+            <div class="flex items-center space-x-6">
+                <a href="#projects" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Projects</a>
+                <a href="#about" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">About</a>
+                <a href="https://github.com/waseemabbas530" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">GitHub (@waseemabbas530)</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CASE STUDY MODAL DIALOG -->
+    <div id="case-study-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
+        <div id="modal-content-box" class="bg-white dark:bg-slate-900 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300">
+            <!-- Close Button -->
+            <button onclick="closeCaseStudy()" aria-label="Close modal" class="absolute top-6 right-6 p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modal-dynamic-body">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-5 py-3 rounded-2xl shadow-xl text-xs font-semibold flex items-center space-x-2">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600"></i>
+        <span id="toast-msg">Action completed successfully.</span>
+    </div>
+
+    <!-- JavaScript Logic & Case Studies Database -->
+    <script>
+        // Case Study Database using STAR Methodology
+        const caseStudiesData = {
+            leafguard: {
+                title: "Leaf Guard AI: Crop Health Diagnostic System",
+                badge: "AI / Computer Vision",
+                badgeColor: "emerald",
+                brief: "An intelligent deep learning web platform designed to empower farmers and agronomists with instantaneous crop disease detection through convolutional neural networks.",
+                star: {
+                    situation: "Crop diseases cause significant global agricultural loss annually, and manual diagnosis by experts is slow and often inaccessible to remote farmers.",
+                    task: "Develop a robust, high-accuracy image classification web application that can process leaf photos and output immediate disease diagnoses with remediation steps.",
+                    action: "Engineered a TensorFlow/Keras CNN trained on curated crop datasets, wrapped inside a modular Flask backend API and deployed with a responsive Tailwind CSS frontend.",
+                    result: "Achieved <strong>99.4% validation accuracy</strong> on test datasets and reduced diagnostic turnaround from days to <strong>under 2 seconds</strong> per image upload."
+                },
+                metrics: [
+                    { label: "Model Accuracy", value: "99.4%" },
+                    { label: "Inference Speed", value: "< 2s" },
+                    { label: "Supported Crops", value: "12+" }
+                ],
+                tech: ["Python", "TensorFlow", "Keras", "Flask", "Tailwind CSS"],
+                github: "https://github.com/waseemabbas530"
+            },
+            cipher: {
+                title: "Cipher Capital: Real-Time Crypto Analytics Platform",
+                badge: "Fintech / Crypto Analytics",
+                badgeColor: "violet",
+                brief: "A high-performance web dashboard providing live cryptocurrency market trends, price volatility charts, and portfolio tracking metrics.",
+                star: {
+                    situation: "Traders and enthusiasts often struggle with cluttered interfaces and slow data refresh rates when monitoring digital asset markets.",
+                    task: "Build a sleek, fast-loading real-time analytics web app that aggregates live API feeds and visualizes pricing trends dynamically.",
+                    action: "Integrated asynchronous REST APIs with modern JavaScript (ES6+), leveraging Chart.js for real-time candlestick and line graphs wrapped in an immersive dark UI.",
+                    result: "Delivered sub-second market data updates, supporting live portfolio calculations across <strong>50+ digital assets</strong> with zero UI lag."
+                },
+                metrics: [
+                    { label: "Data Latency", value: "< 500ms" },
+                    { label: "Tracked Assets", value: "50+" },
+                    { label: "Uptime Reliability", value: "99.9%" }
+                ],
+                tech: ["JavaScript", "REST APIs", "Chart.js", "Tailwind CSS"],
+                github: "https://github.com/waseemabbas530"
+            },
+            secureauth: {
+                title: "SecureAuth: Role-Based Authentication & Security Suite",
+                badge: "Cybersecurity / Backend",
+                badgeColor: "amber",
+                brief: "A hardened backend authentication service implementing token-based sessions, rate limiting, and password hashing defense layers against OWASP threats.",
+                star: {
+                    situation: "Standard web applications often suffer from vulnerabilities such as brute-force logins, weak password hashing, and insecure session management.",
+                    task: "Design and test a bulletproof authentication backend capable of withstanding common web security penetration attacks.",
+                    action: "Implemented Flask-Security with Argon2 password hashing, JWT token rotation, and rigorous vulnerability testing using Kali Linux and Burp Suite.",
+                    result: "Successfully passed all simulated penetration audits, achieving zero critical vulnerabilities and reducing brute-force login vectors by <strong>100%</strong>."
+                },
+                metrics: [
+                    { label: "Security Audit", value: "100% Pass" },
+                    { label: "Vulnerabilities", value: "0 Critical" },
+                    { label: "Hashing Algorithm", value: "Argon2" }
+                ],
+                tech: ["Python", "Flask Security", "SQLite", "Burp Suite", "Kali Linux"],
+                github: "https://github.com/waseemabbas530"
+            },
+            devtask: {
+                title: "DevTask: Automated Task & Git Workflow CLI Utility",
+                badge: "Developer Tooling",
+                badgeColor: "blue",
+                brief: "A command-line automation tool built in Python to streamline local git branch naming, commit logging, and project scaffolding.",
+                star: {
+                    situation: "Developers spend valuable time repeatedly typing git commands and formatting issue tracking tags manually across multiple local repositories.",
+                    task: "Create an efficient CLI utility in Python that automates repetitive git workflows and task management.",
+                    action: "Developed a modular Python CLI parser integrated with local Git hooks and JSON-based local state storage for rapid task tracking.",
+                    result: "Reduced daily git workflow overhead by <strong>40%</strong> and standardized branch naming conventions across developer workspaces."
+                },
+                metrics: [
+                    { label: "Workflow Time Saved", value: "40%" },
+                    { label: "CLI Commands", value: "15+" },
+                    { label: "Setup Time", value: "< 1 min" }
+                ],
+                tech: ["Python CLI", "Git Integration", "JSON", "Automation"],
+                github: "https://github.com/waseemabbas530"
+            }
+        };
+
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
+
+        // Check stored theme or system preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            htmlElement.classList.remove('dark');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Case Study Modal Logic
+        const modal = document.getElementById('case-study-modal');
+        const modalContentBox = document.getElementById('modal-content-box');
+        const modalBody = document.getElementById('modal-dynamic-body');
+
+        function openCaseStudy(projectId) {
+            const project = caseStudiesData[projectId];
+            if (!project) return;
+
+            let metricsHtml = project.metrics.map(m => `
+                <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 text-center">
+                    <div class="text-xl sm:text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">${m.value}</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">${m.label}</div>
+                </div>
+            `).join('');
+
+            let techHtml = project.tech.map(t => `
+                <span class="px-3 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">${t}</span>
+            `).join('');
+
+            modalBody.innerHTML = `
+                <div class="mb-6">
+                    <span class="px-3 py-1 rounded-lg text-xs font-bold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-800/60 inline-block mb-3">
+                        ${project.badge}
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
+                        ${project.title}
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                        ${project.brief}
+                    </p>
+                </div>
+
+                <!-- Key Metrics Grid -->
+                <div class="grid grid-cols-3 gap-4 mb-8">
+                    ${metricsHtml}
+                </div>
+
+                <!-- STAR Methodology Section -->
+                <div class="space-y-5 mb-8">
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center">
+                        <i class="fa-solid fa-star text-amber-500 mr-2"></i> STAR Methodology Contribution
+                    </h3>
+
+                    <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                        <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Situation</span>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${project.star.situation}</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                        <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Task</span>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${project.star.task}</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                        <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Action</span>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${project.star.action}</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/50">
+                        <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Result & Key Metrics</span>
+                        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed">${project.star.result}</p>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Technologies Used</h3>
+                    <div class="flex flex-wrap gap-2">
+                        ${techHtml}
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                    <a href="${project.github}" target="_blank" rel="noopener" class="inline-flex items-center px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md transition-all">
+                        <i class="fa-brands fa-github mr-2 text-base"></i> View GitHub Repository
+                    </a>
+                    <button onclick="closeCaseStudy()" class="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
+                        Close
+                    </button>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modalContentBox.classList.remove('scale-95', 'opacity-0');
+                modalContentBox.classList.add('scale-100', 'opacity-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCaseStudy() {
+            modalContentBox.classList.remove('scale-100', 'opacity-100');
+            modalContentBox.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Close modal on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeCaseStudy();
+            }
+        });
+
+        // Copy Email to Clipboard
+        function copyEmailToClipboard() {
+            const email = "waseemabbas530@gmail.com";
+            // Use execCommand fallback for robust iframe support
+            const textarea = document.createElement('textarea');
+            textarea.value = email;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Email copied to clipboard!", "fa-circle-check");
+            } catch (err) {
+                showToast("Failed to copy email.", "fa-triangle-exclamation");
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // Resume Download Simulation
+        function triggerResumeDownload(e) {
+            e.preventDefault();
+            showToast("Resume download initiated (Waseem_Abbas_Resume.pdf)", "fa-file-arrow-down");
+        }
+
+        // Contact Form Submission Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const successMsg = document.getElementById('form-success-msg');
+            successMsg.classList.remove('hidden');
+            showToast(`Thank you, ${name}! Message sent successfully.`, "fa-circle-check");
+            document.getElementById('contact-form').reset();
+            setTimeout(() => {
+                successMsg.classList.add('hidden');
+            }, 6000);
+        }
+
+        // Toast Notification Helper
+        function showToast(message, iconClass) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.textContent = message;
+            toastIcon.className = `fa-solid ${iconClass} text-emerald-400`;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
